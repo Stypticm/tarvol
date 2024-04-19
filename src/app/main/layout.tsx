@@ -68,7 +68,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
 
     return (
-        <div>
+        <>
             <div className='bg-slate-500 flex flex-col'>
                 <div className='flex flex-col justify-between h-[100vh]'>
                     {
@@ -114,7 +114,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                     }
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
