@@ -4,3 +4,12 @@ export interface HistoryMonth {
     percentOfMonth: number,
     pointsOfMonth: number
 }
+
+export interface EditDeleteHistoryModalProps {
+    searchParams: {
+        id: string;
+        nameOfMonth: string;
+        percentOfMonth: string;
+        pointsOfMonth: string;
+    }
+}

@@ -3,7 +3,6 @@ import { Input } from '@nextui-org/react'
 import { LockKeyhole, Mail } from 'lucide-react'
 import React, { useState } from 'react'
 import { AuthProps } from '../features/authTypes'
-import { login } from '@/actions/authorization'
 import { ButtonAuth } from './ButtonAuth'
 import { useRouter } from 'next/navigation'
 import signIn from '@/firebase/auth/signin'
@@ -14,15 +13,17 @@ const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
     const [password, setPassword] = useState('')
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
         try {
-            const { result, error } = await signIn(email, password);
-            if (error) {
-                console.error('Login failed:', error);
-            } else {
-                console.log('Login successful:', result);
-                router.push('/main');
+            if ((email !== '' || email !== undefined) || (password !== '' || password !== undefined)) {
+                const { result, error } = await signIn(email, password);
+                if (error) {
+                    console.error('Login failed:', error);
+                } else {
+                    console.log('Login successful:', result);
+                    router.push('/main');
+                }
             }
         } catch (err) {
             console.error(err);
@@ -30,18 +31,19 @@ const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
     };
 
     return (
-        <div className='w-full h-screen flex justify-center items-center'>
+        <div className="h-screen w-screen bg-sky-950 overflow-auto flex justify-center items-center">
             <form
                 className='w-5/6 h-full flex flex-col justify-center'
                 onSubmit={handleLogin}
             >
-                <h1 className='text-xl font-bold mb-5 ml-5 flex items-center justify-start'>
-                    <span>Authentication</span>
+                <h1 className='text-xl font-bold mb-5 flex justify-center'>
+                    Authentication
                 </h1>
-                <div className='flex flex-col gap-4'>
+                <section className='flex flex-col gap-4'>
                     <Input
                         type="email"
                         name="email"
+                        id='email'
                         placeholder="Email"
                         startContent={
                             <Mail color='black' />
@@ -55,6 +57,7 @@ const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
                     <Input
                         type="password"
                         name="password"
+                        id='password'
                         placeholder="Password"
                         startContent={
                             <LockKeyhole color='black' />
@@ -65,16 +68,18 @@ const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
                         autoComplete='current-password'
                         required
                     />
-                </div>
-                <ButtonAuth />
-                <p className='text-neutral-500 mt-12'>
+                </section>
+                <section className='flex justify-center mt-5'>
+                    <ButtonAuth />
+                </section>
+                <section className='text-neutral-500 mt-12'>
                     First time using Tarvol ?
                     <span
                         onClick={onSwitch}
                         className='text-white ml-1 hover:underline cursor-pointer'>
                         Create an account
                     </span>
-                </p>
+                </section>
             </form>
         </div>
     )

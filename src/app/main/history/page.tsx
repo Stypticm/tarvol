@@ -1,19 +1,18 @@
 'use client'
 
 import { HistoryMonth } from '@/features/hisyotyTypes'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
-import React, { useEffect, useId } from 'react'
+import { collection, getDocs, getFirestore, orderBy, query } from 'firebase/firestore'
+import React, { useEffect } from 'react'
 
 const HistoryPage = () => {
 
-    const db = getFirestore()
-    const id = useId()
     const [history, setHistory] = React.useState<any>([])
 
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const historyCollectionRef = collection(db, "history");
+                const db = await getFirestore()
+                const historyCollectionRef = await query(collection(db, "history"), orderBy("timestamp", "desc"));
                 const historyQuerySnapshot = await getDocs(historyCollectionRef);
                 const historyData = historyQuerySnapshot.docs.map(doc => ({
                     id: doc.id,
@@ -25,7 +24,7 @@ const HistoryPage = () => {
             }
         }
         fetchHistory()
-    }, [db])
+    }, [])
 
     return (
         <div className='bg-slate-600 m-2 rounded-md h-full'>

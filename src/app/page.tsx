@@ -6,9 +6,7 @@ import Auth from '@/components/Auth';
 export default function Home() {
   return (
     <NextUIProvider>
-      <main className="h-screen w-screen bg-sky-950 overflow-auto">
-        <Auth />
-      </main>
+      <Auth />
     </NextUIProvider>
   );
 }

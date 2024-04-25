@@ -19,6 +19,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     const [user, loading, error] = useAuthState(auth);
     const [currentUser, setCurrentUser] = React.useState<any>(null);
 
+    const isItMainPageClass = pathName !== '/main' ? 'flex justify-around' : 'flex justify-center';
+
     useEffect(() => {
         const fetchUserData = async () => {
             if (user) {
@@ -36,7 +38,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             }
         }
         fetchUserData();
-    }, [user, db])
+    }, [user])
 
     if (loading) {
         return <div>Loading...</div>;
@@ -74,24 +76,39 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                     {
                         currentUser ?
                             <div className='m-2'>
-                                <h1>Приветствуем,вас: <span>
-                                    {currentUser.email}
-                                </span></h1>
-                                {
-                                    currentUser.role === 'user' ? 'у вас бесплатная подписка' : 'у вас платная подписка'
-                                }
+                                <div className={isItMainPageClass}>
+                                    <section>
+                                        {
+                                            currentUser.role === 'admin' ? <div className='mb-2'>
+                                                <Button onClick={() => router.push('/adminpanel')}>Панель Администратора</Button>
+                                            </div> : <div>
+                                                <h1>
+                                                    Приветствуем,вас: <span>
+                                                        {currentUser.email}
+                                                    </span>
+                                                </h1>
+                                                {
+                                                    currentUser.role === 'user' ? 'у вас бесплатная подписка' : 'у вас платная подписка'
+                                                }
+                                            </div>
+                                        }
+                                    </section>
+                                    <section>
+                                        {pathName !== '/main' ? <Button onClick={() => router.push('/main')}>Новости</Button> : null}
+                                    </section>
+                                </div>
                                 <div>
                                     {
                                         currentUser.role !== 'subscriber' ?
-                                            <p className='flex justify-around'>
+                                            <section className='flex justify-around'>
                                                 {pathName !== '/main/history' ? <Button onClick={() => router.push('/main/history')}>История</Button> : null}
                                                 {pathName !== '/main/signals' ? <Button onClick={() => router.push('/main/signals')}>Сигналы</Button> : null}
                                                 <Button onClick={() => router.push('/unsubscriber')}>Подписаться</Button>
-                                            </p> :
-                                            <p className='flex justify-center'>
+                                            </section> :
+                                            <section className='flex justify-center'>
                                                 <Button onClick={() => router.push('/main/history')}>История</Button>
                                                 <Button onClick={() => router.push('/main/subscriber')}>Платные сигналы</Button>
-                                            </p>
+                                            </section>
                                     }
                                 </div>
                             </div>
