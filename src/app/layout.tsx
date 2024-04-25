@@ -43,9 +43,7 @@ export default function RootLayout({
         {!!isMobile ? (
           <>{children}</>
         ) : (
-          // <div className='bg-slate-700 text-slate-200 h-screen w-screen flex items-center text-center'>Пожалуйста зайдите в приложение с мобильного устройства.</div>
-          <>{children}</>
-          // </div
+          <div className='bg-slate-700 text-slate-200 h-screen w-screen flex justify-center items-center text-center'>Пожалуйста зайдите в приложение с мобильного устройства.</div>
         )}
       </body>
     </html>
