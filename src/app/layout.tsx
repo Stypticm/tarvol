@@ -2,7 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { isMobile } from "react-device-detect";
+import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
   ]
 };
 
-export const viewport = {
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-};
+// export const viewport = {
+//   viewport:
+//     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+// };
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -37,14 +37,11 @@ interface RootLayoutProps {
 export default function RootLayout({
   children,
 }: Readonly<RootLayoutProps>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        {!!isMobile ? (
-          <>{children}</>
-        ) : (
-          <div className='bg-slate-700 text-slate-200 h-screen w-screen flex justify-center items-center text-center'>Пожалуйста зайдите в приложение с мобильного устройства.</div>
-        )}
+        {children}
       </body>
     </html>
   );
