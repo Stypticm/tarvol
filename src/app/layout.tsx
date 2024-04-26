@@ -1,8 +1,9 @@
+import { Button } from '@nextui-org/react';
 import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { useEffect, useState } from 'react';
+import { PWAProvider } from '@/сontext/PWAContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +26,6 @@ export const metadata: Metadata = {
   ]
 };
 
-// export const viewport = {
-//   viewport:
-//     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-// };
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -41,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+          {children}
       </body>
     </html>
   );

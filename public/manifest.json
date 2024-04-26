@@ -1,6 +1,6 @@
 {
-    "name": "next-tarvol",
-    "short_name": "next-tarvol",
+    "name": "Tarvol",
+    "short_name": "Tarvol",
     "scope": "/",
     "start_url": "/",
     "display": "standalone",

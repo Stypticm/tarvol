@@ -1,10 +1,11 @@
 import { AuthProps } from '@/features/authTypes'
 import sigUp from '@/firebase/auth/signup'
-import { Input } from '@nextui-org/react'
+import { Button, Input } from '@nextui-org/react'
 import { LockKeyhole, Mail, User } from 'lucide-react'
 import React from 'react'
 import { ButtonReg } from './ButtonAuth'
 import { useRouter } from 'next/navigation'
+import InstallPWAButton from './InstallPWAButton'
 
 const SignUp: React.FC<AuthProps> = ({ onSwitch }) => {
 
@@ -36,6 +37,9 @@ const SignUp: React.FC<AuthProps> = ({ onSwitch }) => {
       <form className='w-5/6 h-full flex flex-col justify-center'
         onSubmit={handleRegistration}
       >
+        <section className='flex justify-center mb-5'>
+          <InstallPWAButton />
+        </section>
         <h1 className='text-xl font-bold mb-5 flex justify-center'>
           Registration
         </h1>

@@ -8,12 +8,30 @@ const NotMobileLayout = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter()
 
     return (
-        <div className='bg-slate-500 flex flex-col'>
-            <div className='flex flex-col justify-between h-[100vh]'>
+        <div style={{
+            height: '100vh',
+            width: '100vw',
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+        }}>
+            <div style={{
+                height: '200px',
+                width: '450px',
+                overflow: 'hidden',
+            }}>
+
                 {children}
-                <section className='flex justify-end m-2'>
-                    <Button onClick={() => router.back()}>Back</Button>
-                </section>
+                {/* <section style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}>
+                    <Button onClick={() => console.log('clicked')}>Back</Button>
+                </section> */}
+
             </div>
         </div>
     )

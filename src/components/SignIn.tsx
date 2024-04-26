@@ -1,11 +1,12 @@
 'use client'
-import { Input } from '@nextui-org/react'
+import { Button, Input } from '@nextui-org/react'
 import { LockKeyhole, Mail } from 'lucide-react'
 import React, { useState } from 'react'
 import { AuthProps } from '../features/authTypes'
 import { ButtonAuth } from './ButtonAuth'
 import { useRouter } from 'next/navigation'
 import signIn from '@/firebase/auth/signin'
+import InstallPWAButton from './InstallPWAButton'
 
 const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
     const router = useRouter()
@@ -31,11 +32,14 @@ const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
     };
 
     return (
-        <div className="h-screen w-screen bg-sky-950 overflow-auto flex justify-center items-center">
+        <div className="h-screen w-screen bg-sky-950 overflow-auto flex flex-wrap justify-center items-center">
             <form
-                className='w-5/6 h-full flex flex-col justify-center'
+                className='w-5/6 h-5/6 flex flex-col justify-center'
                 onSubmit={handleLogin}
             >
+                <section className='flex justify-center mb-5'>
+                    <InstallPWAButton />
+                </section>
                 <h1 className='text-xl font-bold mb-5 flex justify-center'>
                     Authentication
                 </h1>

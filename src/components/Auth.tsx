@@ -4,6 +4,7 @@ import React, { useCallback, useState } from 'react'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import { AuthMode } from '@/features/authTypes'
+import { Button } from '@nextui-org/react'
 
 const Auth = () => {
   const [variant, setVariant] = React.useState<AuthMode>('login')
