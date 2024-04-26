@@ -27,7 +27,13 @@ const InstallPWAButton = () => {
         }
     };
 
-    return deferredPrompt && <Button onClick={handleInstallClick}>Download App</Button>;
+    return (
+        (deferredPrompt || isIos()) && (
+            <Button onClick={handleInstallClick}>
+                {isIos() ? 'How to install the app' : 'Download App'}
+            </Button>
+        )
+    );
 };
 
 export default InstallPWAButton;
