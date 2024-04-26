@@ -16,7 +16,7 @@ bun dev
 
 ## Deploy on Vercel
 
-[Vercel Platform](https://tarvol.vercel.app)
+[Deploy Tarvol](https://tarvol.vercel.app) - use mobile phone for watching
 
 ```bash
 - nextjs
