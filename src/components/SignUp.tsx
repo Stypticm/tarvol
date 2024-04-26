@@ -5,7 +5,7 @@ import { LockKeyhole, Mail, User } from 'lucide-react'
 import React from 'react'
 import { ButtonReg } from './ButtonAuth'
 import { useRouter } from 'next/navigation'
-import InstallPWAButton from './InstallPWAButton'
+import InstallPWAButton from './AddToHomeScreen'
 
 const SignUp: React.FC<AuthProps> = ({ onSwitch }) => {
 

@@ -6,7 +6,7 @@ import { AuthProps } from '../features/authTypes'
 import { ButtonAuth } from './ButtonAuth'
 import { useRouter } from 'next/navigation'
 import signIn from '@/firebase/auth/signin'
-import InstallPWAButton from './InstallPWAButton'
+import InstallPWAButton from './AddToHomeScreen'
 
 const SignIn: React.FC<AuthProps> = ({ onSwitch }) => {
     const router = useRouter()
