@@ -1,5 +1,5 @@
 import { Button } from '@nextui-org/react';
-
+import { useState } from 'react';
 import { usePWA } from '@/сontext/PWAContext';
 
 const isIos = () => {
@@ -12,6 +12,7 @@ const isIos = () => {
 
 const InstallPWAButton = () => {
     const { deferredPrompt, setDeferredPrompt } = usePWA();
+    const [isAppInstalled, setIsAppInstalled] = useState(false);
 
     const handleInstallClick = async () => {
         if (isIos()) {
@@ -29,11 +30,11 @@ const InstallPWAButton = () => {
             setDeferredPrompt(null);
         } else {
             alert("Приложение уже установлено!");
-            setDeferredPrompt(null);
+            setIsAppInstalled(true);
         }
     };
 
-    return (typeof window !== 'undefined' && (deferredPrompt || isIos())) && (
+    return (typeof window !== 'undefined' && !isAppInstalled && (deferredPrompt || isIos())) && (
         <Button onClick={handleInstallClick}>
             {isIos() ? 'Как установить приложение' : 'Установить приложение'}
         </Button>
