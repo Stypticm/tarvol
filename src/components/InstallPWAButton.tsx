@@ -1,9 +1,13 @@
 import { Button } from '@nextui-org/react';
+
 import { usePWA } from '@/сontext/PWAContext';
 
 const isIos = () => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    return /iphone|ipad|ipod/.test(userAgent);
+    if (typeof window !== 'undefined') {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test(userAgent);
+    }
+    return false;
 };
 
 const InstallPWAButton = () => {
@@ -27,12 +31,10 @@ const InstallPWAButton = () => {
         }
     };
 
-    return (
-        (deferredPrompt || isIos()) && (
-            <Button onClick={handleInstallClick}>
-                {isIos() ? 'How to install the app' : 'Download App'}
-            </Button>
-        )
+    return (typeof window !== 'undefined' && (deferredPrompt || isIos())) && (
+        <Button onClick={handleInstallClick}>
+            {isIos() ? 'How to install the app' : 'Download App'}
+        </Button>
     );
 };
 
