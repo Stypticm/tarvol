@@ -15,7 +15,7 @@ const InstallPWAButton = () => {
 
     const handleInstallClick = async () => {
         if (isIos()) {
-            alert('To install the app, tap the Share icon and then Add to Home Screen.');
+            alert('Чтобы установить приложение на iOS, нажмите кнопку "Поделиться" и выберите "На экран Домой".');
             return;
         }
 
@@ -27,13 +27,13 @@ const InstallPWAButton = () => {
             }
             setDeferredPrompt(null);
         } else {
-            alert("You have already installed the app!");
+            alert("Приложение уже установлено!");
         }
     };
 
     return (typeof window !== 'undefined' && (deferredPrompt || isIos())) && (
         <Button onClick={handleInstallClick}>
-            {isIos() ? 'How to install the app' : 'Download App'}
+            {isIos() ? 'Как установить приложение' : 'Установить приложение'}
         </Button>
     );
 };
