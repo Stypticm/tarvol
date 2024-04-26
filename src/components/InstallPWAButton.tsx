@@ -16,6 +16,7 @@ const InstallPWAButton = () => {
     const handleInstallClick = async () => {
         if (isIos()) {
             alert('Чтобы установить приложение на iOS, нажмите кнопку "Поделиться" и выберите "На экран Домой".');
+            setDeferredPrompt(null);
             return;
         }
 
@@ -28,6 +29,7 @@ const InstallPWAButton = () => {
             setDeferredPrompt(null);
         } else {
             alert("Приложение уже установлено!");
+            setDeferredPrompt(null);
         }
     };
 
