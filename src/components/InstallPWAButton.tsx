@@ -1,11 +1,5 @@
 import { Button } from '@nextui-org/react';
-import { getAuth } from 'firebase/auth';
-import Link from 'next/link';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import firebase_app from '@/firebase/config';
 import { usePWA } from '@/сontext/PWAContext';
-
-const auth = getAuth(firebase_app);
 
 const isIos = () => {
     const userAgent = window.navigator.userAgent.toLowerCase();
@@ -14,26 +8,6 @@ const isIos = () => {
 
 const InstallPWAButton = () => {
     const { deferredPrompt, setDeferredPrompt } = usePWA();
-    const [user, loading, error] = useAuthState(auth);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
-
-    if (!user) {
-        return (
-            <div className='w-screen h-screen flex flex-col justify-center items-center'>
-                <p>Sorry, you are not logged in.</p>
-                <Button>
-                    <Link href={'/login'}>Sign In</Link>
-                </Button>
-            </div>
-        );
-    }
 
     const handleInstallClick = async () => {
         if (isIos()) {
